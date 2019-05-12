@@ -87,7 +87,7 @@ public class Main {
 	}
 	
 	public static void print_menu(Connection conn, Scanner keyboard) throws SQLException {
-		
+		 
 		// for root user
 		if (student_no.compareTo("root") == 0 ) {
 			System.out.println("* Current user: " + student_no + " *\n");
