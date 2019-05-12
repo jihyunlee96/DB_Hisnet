@@ -19,7 +19,7 @@ public class Main {
     			Class.forName("com.mysql.cj.jdbc.Driver");
     			
     			/* change the user name and password */
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?serverTimezone=UTC&&useSSL=false&&allowPublicKeyRetrieval=true", "hisnet", "1");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?serverTimezone=UTC&&useSSL=false&&allowPublicKeyRetrieval=true", "root", "1");
 
 			log_in(conn, keyboard);			
 		} 
