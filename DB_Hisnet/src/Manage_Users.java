@@ -54,7 +54,13 @@ public class Manage_Users {
 				e.printStackTrace();
 			}
 		}
-
+		
+		try {
+			Main.print_menu(conn, keyboard);
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static void add_user() throws SQLException {
@@ -285,8 +291,6 @@ public class Manage_Users {
 			}
 		}
 		
-		Main.print_menu(conn, keyboard);
-
 	}
 	
 	public static void modify_user() throws SQLException {

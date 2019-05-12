@@ -1,10 +1,14 @@
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class Main {
+	
+	static String student_no;
 	
 	public static void main(String args[]) {
 		
@@ -16,9 +20,9 @@ public class Main {
     			Class.forName("com.mysql.cj.jdbc.Driver");
     			
     			/* change the user name and password */
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?serverTimezone=UTC&&useSSL=false", "hisnet", "1");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?serverTimezone=UTC&&useSSL=false&&allowPublicKeyRetrieval=true", "hisnet", "1");
 			
-			System.out.println("********************* Hisnet Database *********************");
+			log_in(conn, keyboard);
 			
 			print_menu(conn, keyboard);			
 		} 
@@ -32,30 +36,112 @@ public class Main {
 		}
 	}
 	
+	
+	public static void log_in(Connection conn, Scanner keyboard) throws SQLException {
+		
+		System.out.println("********************* Hisnet Database *********************");
+		System.out.println("[ Log-In ]");
+		
+		System.out.print("ID: ");		
+		String id = keyboard.nextLine();
+		
+		if (id.length() == 0)
+			id = keyboard.nextLine();
+		
+		Statement stmt = (Statement) conn.createStatement();
+		ResultSet rs = stmt.executeQuery("select * from StudentList where user_id ='" + id + "';");
+		
+		if(!rs.next() && id.compareTo("root") != 0) {
+			System.out.println("\n***********************************************************\n");
+			System.out.println("[ ID doesn't exist! ]\n");
+			
+			Main.log_in(conn, keyboard);
+		}
+		
+		System.out.print("Password: ");		
+		String password = keyboard.nextLine();
+		
+		if (password.length() == 0)
+			password = keyboard.nextLine();
+		
+		if (id.compareTo("root") == 0 && password.compareTo("1") == 0) {
+			student_no = "root";
+			
+			System.out.println("\n***********************************************************\n");
+			System.out.println("[ Successfully logged in as " + student_no + " ]");
+			System.out.println("\n***********************************************************");
+		}
+		else if (rs.getString("password").compareTo(password) != 0) {
+			System.out.println("\n***********************************************************\n");
+			System.out.println("[ Incorrect password! ]\n");
+			
+			Main.log_in(conn, keyboard);
+		}
+		else {
+			student_no = rs.getString("student_num");
+		
+			System.out.println("\n***********************************************************\n");
+			System.out.println("[ Successfully logged in as " + student_no + " ]");
+			System.out.println("\n***********************************************************");
+		}
+	}
+	
 	public static void print_menu(Connection conn, Scanner keyboard) throws SQLException {
 		
-		System.out.println("[ Select an operation ]");
-		System.out.println("0. Initialize Tables");
-		System.out.println("1. Manage Users (Add / Modify / Delete)");
-		System.out.println("2. Search Users");
-		
-		System.out.println();
-		System.out.print("Input: ");
-		
-		int input = keyboard.nextInt();
-		
-		System.out.println("\n***********************************************************\n");
-		
-		if (input == 0)
-			Initialize_Tables.initialize_tables(conn, keyboard);
-		
-		else if (input == 1)
-			Manage_Users.print_instructions(conn, keyboard);
-		
-		else if (input == 2) {
-			// TO DO
-		}
+		// for root user
+		if (student_no.compareTo("root") != 0 ) {
+			System.out.println("* Current user: " + student_no + " *\n");
+			System.out.println("[ Select an operation ]");
+			System.out.println("0. Initialize Tables");
+			System.out.println("1. Manage Users (Add / Modify / Delete)");
+			System.out.println("2. Search Users");
 			
+			System.out.println();
+			System.out.print("Input: ");
+			
+			int input = keyboard.nextInt();
+			
+			System.out.println("\n***********************************************************\n");
+			
+			if (input == 0)
+				log_in(conn, keyboard);
+			else if (input == 1)
+				Initialize_Tables.initialize_tables(conn, keyboard);
+			
+			else if (input == 2)
+				Manage_Users.print_instructions(conn, keyboard);
+			
+			else if (input == 3) {
+				// TO DO
+			}		
+		}
+		// for normal user
+		else {
+			System.out.println("* Current user: " + student_no + " *\n");
+			System.out.println("[ Select an operation ]");
+			System.out.println("1. Initialize Tables");
+			System.out.println("2. Manage Users (Add / Modify / Delete)");
+			System.out.println("3. Search Users");
+			
+			System.out.println();
+			System.out.print("Input: ");
+			
+			int input = keyboard.nextInt();
+			
+			System.out.println("\n***********************************************************\n");
+			
+			if (input == 0)
+				log_in(conn, keyboard);
+			else if (input == 1)
+				Initialize_Tables.initialize_tables(conn, keyboard);
+			
+			else if (input == 2)
+				Manage_Users.print_instructions(conn, keyboard);
+			
+			else if (input == 3) {
+				// TO DO
+			}	
+		}
 	}
 }
 

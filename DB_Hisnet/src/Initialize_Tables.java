@@ -26,9 +26,7 @@ public class Initialize_Tables {
 			// drop the existing tables
 			if (input == 'Y') {
 				Statement stmt = (Statement) conn.createStatement();
-				
-				stmt.executeQuery("START TRANSACTION;");
-				
+								
 				stmt.executeUpdate("DROP TABLE StudentList;");
 				stmt.executeUpdate("DROP TABLE ProfessorList;");
 			}
