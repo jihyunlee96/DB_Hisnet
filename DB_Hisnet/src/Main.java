@@ -11,7 +11,6 @@ public class Main {
 	static String student_no;
 	
 	public static void main(String args[]) {
-		
 		// open the keyboard scanner
 		Scanner keyboard = new Scanner(System.in);
 		
@@ -21,7 +20,7 @@ public class Main {
     			
     			/* change the user name and password */
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?serverTimezone=UTC&&useSSL=false&&allowPublicKeyRetrieval=true", "hisnet", "1");
-			
+
 			log_in(conn, keyboard);
 			
 			print_menu(conn, keyboard);			
@@ -105,6 +104,7 @@ public class Main {
 			
 			if (input == 0)
 				log_in(conn, keyboard);
+			
 			else if (input == 1)
 				Initialize_Tables.initialize_tables(conn, keyboard);
 			
@@ -119,9 +119,11 @@ public class Main {
 		else {
 			System.out.println("* Current user: " + student_no + " *\n");
 			System.out.println("[ Select an operation ]");
-			System.out.println("1. Initialize Tables");
-			System.out.println("2. Manage Users (Add / Modify / Delete)");
-			System.out.println("3. Search Users");
+			System.out.println("1. Board");
+			System.out.println("2. Course Information");
+			System.out.println("3. Academic Information");
+			System.out.println("4. Facility Reservation");
+			System.out.println("5. Dormitory");
 			
 			System.out.println();
 			System.out.print("Input: ");
@@ -129,18 +131,26 @@ public class Main {
 			int input = keyboard.nextInt();
 			
 			System.out.println("\n***********************************************************\n");
+
+			if (input == 1) {
+				
+			}
 			
-			if (input == 0)
-				log_in(conn, keyboard);
-			else if (input == 1)
-				Initialize_Tables.initialize_tables(conn, keyboard);
-			
-			else if (input == 2)
-				Manage_Users.print_instructions(conn, keyboard);
+			else if (input == 2) {
+				
+			}
 			
 			else if (input == 3) {
 				// TO DO
 			}	
+			
+			else if (input == 4) {
+				
+			}
+			
+			else if (input == 5) {
+				
+			}
 		}
 	}
 }
