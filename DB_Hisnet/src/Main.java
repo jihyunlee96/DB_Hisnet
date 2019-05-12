@@ -21,9 +21,7 @@ public class Main {
     			/* change the user name and password */
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?serverTimezone=UTC&&useSSL=false&&allowPublicKeyRetrieval=true", "hisnet", "1");
 
-			log_in(conn, keyboard);
-			
-			print_menu(conn, keyboard);			
+			log_in(conn, keyboard);			
 		} 
 		
 		catch(SQLException ex) {
@@ -83,17 +81,21 @@ public class Main {
 			System.out.println("[ Successfully logged in as " + student_no + " ]");
 			System.out.println("\n***********************************************************");
 		}
+		
+		print_menu(conn, keyboard);			
+
 	}
 	
 	public static void print_menu(Connection conn, Scanner keyboard) throws SQLException {
 		
 		// for root user
-		if (student_no.compareTo("root") != 0 ) {
+		if (student_no.compareTo("root") == 0 ) {
 			System.out.println("* Current user: " + student_no + " *\n");
 			System.out.println("[ Select an operation ]");
-			System.out.println("0. Initialize Tables");
-			System.out.println("1. Manage Users (Add / Modify / Delete)");
-			System.out.println("2. Search Users");
+			System.out.println("0. Log Out");
+			System.out.println("1. Initialize Tables");
+			System.out.println("2. Manage Users (Add / Modify / Delete)");
+			System.out.println("3. Search Users");
 			
 			System.out.println();
 			System.out.print("Input: ");
@@ -119,6 +121,7 @@ public class Main {
 		else {
 			System.out.println("* Current user: " + student_no + " *\n");
 			System.out.println("[ Select an operation ]");
+			System.out.println("0. Log Out");
 			System.out.println("1. Board");
 			System.out.println("2. Course Information");
 			System.out.println("3. Academic Information");
@@ -131,8 +134,11 @@ public class Main {
 			int input = keyboard.nextInt();
 			
 			System.out.println("\n***********************************************************\n");
-
-			if (input == 1) {
+			
+			if (input == 0) {
+				log_in(conn, keyboard);
+			}
+			else if (input == 1) {
 				
 			}
 			
