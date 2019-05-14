@@ -1,10 +1,13 @@
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
+
+import courses.*;
 
 public class Main {
 	
@@ -19,8 +22,9 @@ public class Main {
     			Class.forName("com.mysql.cj.jdbc.Driver");
     			
     			/* change the user name and password */
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?serverTimezone=UTC&&useSSL=false&&allowPublicKeyRetrieval=true", "hisnet", "1");
-
+//			Connection conn = DriverManager.getConnection("jdbc:mysql://172.17.217.136:3306/db?serverTimezone=UTC&&useSSL=false&&allowPublicKeyRetrieval=true", "4InQueue", "dbdb1234!");
+    			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?serverTimezone=UTC&&useSSL=false&&allowPublicKeyRetrieval=true", "root", "cho7611278");
+    			
 			log_in(conn, keyboard);			
 		} 
 		
@@ -96,6 +100,7 @@ public class Main {
 			System.out.println("1. Initialize Tables");
 			System.out.println("2. Manage Users (Add / Modify / Delete)");
 			System.out.println("3. Search Users");
+			System.out.println("4. Root User's Job");
 			
 			System.out.println();
 			System.out.print("Input: ");
@@ -116,6 +121,10 @@ public class Main {
 			else if (input == 3) {
 				// TO DO
 			}		
+			
+			else if (input == 4) {
+				Root_User_Job.print_root_job(conn, keyboard);
+			}
 		}
 		// for normal user
 		else {
@@ -143,7 +152,7 @@ public class Main {
 			}
 			
 			else if (input == 2) {
-				
+				Course_Information.print_course_menu(conn, keyboard);
 			}
 			
 			else if (input == 3) {
