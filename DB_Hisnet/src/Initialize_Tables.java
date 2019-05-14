@@ -1,7 +1,9 @@
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
+ 
 
 public class Initialize_Tables {
 	
@@ -87,6 +89,7 @@ public class Initialize_Tables {
 					+ "2014-03-01" + "', DATE '" + "2020-02-28" + "', '" + "CPSW" + "', '" + "Counselling Psychology" + "', '"
 					+ "NULL" + "', '" + "NULL" + "', '" + "BETHEL" + "', '"+ "21400145@handong.edu" + "', '" + "Busan" + "')");
 			
+			// 프로페서 테이
 			result = stmt.executeUpdate("CREATE TABLE ProfessorList ("
 					+ "professor_num INT(8), "
 					+ "user_id char(20) NOT NULL, "
