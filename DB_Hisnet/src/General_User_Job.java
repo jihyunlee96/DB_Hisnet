@@ -5,9 +5,10 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 
-public class Root_User_Job {
+public class General_User_Job {
 	
 	public static void print_root_job(Connection conn, Scanner keyboard) throws SQLException {
+		String student_no = Main.get_student_no();
 		
 		System.out.println("[ Select an operation ]");
 		System.out.println("0. Back");
@@ -23,7 +24,7 @@ public class Root_User_Job {
 		System.out.println("\n***********************************************************\n");
 		
 		if (input == 0) {
-			Main.print_menu(conn, keyboard, "root");
+			Main.print_menu(conn, keyboard, student_no);
 		}
 		
 		else if (input == 1) {
@@ -31,7 +32,7 @@ public class Root_User_Job {
 		}
 		
 		else if (input == 2) {
-			Manage_Facilities.print_facility_menu(conn, keyboard);
+			
 		}
 		
 		else if (input == 3) {

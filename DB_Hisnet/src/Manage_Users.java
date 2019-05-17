@@ -57,7 +57,7 @@ public class Manage_Users {
 		}
 		
 		try {
-			Main.print_menu(conn, keyboard);
+			Main.print_menu(conn, keyboard, "root");
 		} 
 		catch (SQLException e) {
 			e.printStackTrace();
@@ -319,7 +319,7 @@ public class Manage_Users {
 				System.out.println("[ Non-existing student number ]");
 				System.out.println("\n***********************************************************\n");
 
-				Main.print_menu(conn, keyboard);
+				Main.print_menu(conn, keyboard, "root");
 			}
 			
 			System.out.println("\n***********************************************************\n");
@@ -387,7 +387,7 @@ public class Manage_Users {
 				System.out.println("[ Non-existing professor number ]");
 				System.out.println("\n***********************************************************\n");
 
-				Main.print_menu(conn, keyboard);
+				Main.print_menu(conn, keyboard, "root");
 			}
 			
 			System.out.println("\n***********************************************************\n");
@@ -444,7 +444,7 @@ public class Manage_Users {
 			
 		}
 
-		Main.print_menu(conn, keyboard);
+		Main.print_menu(conn, keyboard, "root");
 	}
 
 	
@@ -506,7 +506,7 @@ public class Manage_Users {
 			}
 		}
 		
-		Main.print_menu(conn, keyboard);
+		Main.print_menu(conn, keyboard, "root");
 
 	}
 	
