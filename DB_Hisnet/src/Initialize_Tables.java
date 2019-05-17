@@ -57,39 +57,39 @@ public class Initialize_Tables {
 					+ "address char(30), "
 					+ "PRIMARY KEY (student_num));");
 			
-			result = stmt.executeUpdate("INSERT INTO StudentList(student_num, user_id, password, name, "
-					+ "phone_num, gender, high_school, entrance_date, graduate_date, department, first_major, second_major, "
-					+ "minor, rc, e_mail, address) "
-					+ "VALUES (" + Integer.toString(21700581) + ", '" +  "jlee" + "', '" + "123" + "', '"
-					+ "Jihyun Lee" + "', '" + "01074547621" + "', '" + "F" + "','" + "Lincoln School" + "', DATE '" 
-					+ "2017-03-01" + "', DATE '" + "2021-02-28" + "', '" + "CSEE" + "', '" + "Computer Science" + "', '"
-					+ "NULL" + "', '" + "NULL" + "', '" + "GRACE" + "', '"+ "21700581@handong.edu" + "', '" + "Busan" + "')");
-
-			result = stmt.executeUpdate("INSERT INTO StudentList(student_num, user_id, password, name, "
-					+ "phone_num, gender, high_school, entrance_date, graduate_date, department, first_major, second_major, "
-					+ "minor, rc, e_mail, address) "
-					+ "VALUES (" + Integer.toString(21700001) + ", '" +  "yjung" + "', '" + "321" + "', '"
-					+ "Yujin Jung" + "', '" + "01012347321" + "', '" + "F" + "','" + "Moonhyun High School" + "', DATE '" 
-					+ "2017-03-01" + "', DATE '" + "2021-02-28" + "', '" + "SESE" + "', '" + "Architecture" + "', '"
-					+ "NULL" + "', '" + "NULL" + "', '" + "KUYPER" + "', '"+ "21700001@handong.edu" + "', '" + "Suwon" + "')");
+//			result = stmt.executeUpdate("INSERT INTO StudentList(student_num, user_id, password, name, "
+//					+ "phone_num, gender, high_school, entrance_date, graduate_date, department, first_major, second_major, "
+//					+ "minor, rc, e_mail, address) "
+//					+ "VALUES (" + Integer.toString(21700581) + ", '" +  "jlee" + "', '" + "123" + "', '"
+//					+ "Jihyun Lee" + "', '" + "01074547621" + "', '" + "F" + "','" + "Lincoln School" + "', DATE '" 
+//					+ "2017-03-01" + "', DATE '" + "2021-02-28" + "', '" + "CSEE" + "', '" + "Computer Science" + "', '"
+//					+ "NULL" + "', '" + "NULL" + "', '" + "GRACE" + "', '"+ "21700581@handong.edu" + "', '" + "Busan" + "')");
+//
+//			result = stmt.executeUpdate("INSERT INTO StudentList(student_num, user_id, password, name, "
+//					+ "phone_num, gender, high_school, entrance_date, graduate_date, department, first_major, second_major, "
+//					+ "minor, rc, e_mail, address) "
+//					+ "VALUES (" + Integer.toString(21700001) + ", '" +  "yjung" + "', '" + "321" + "', '"
+//					+ "Yujin Jung" + "', '" + "01012347321" + "', '" + "F" + "','" + "Moonhyun High School" + "', DATE '" 
+//					+ "2017-03-01" + "', DATE '" + "2021-02-28" + "', '" + "SESE" + "', '" + "Architecture" + "', '"
+//					+ "NULL" + "', '" + "NULL" + "', '" + "KUYPER" + "', '"+ "21700001@handong.edu" + "', '" + "Suwon" + "')");
+//			
+//			result = stmt.executeUpdate("INSERT INTO StudentList(student_num, user_id, password, name, "
+//					+ "phone_num, gender, high_school, entrance_date, graduate_date, department, first_major, second_major, "
+//					+ "minor, rc, e_mail, address) "
+//					+ "VALUES (" + Integer.toString(21400001) + ", '" +  "mkim" + "', '" + "12345" + "', '"
+//					+ "Moonsu Kim" + "', '" + "01015227321" + "', '" + "M" + "','" + "Daeyeon High School" + "', DATE '" 
+//					+ "2014-03-01" + "', DATE '" + "2020-02-28" + "', '" + "ISLL" + "', '" + "International Studies" + "', '"
+//					+ "NULL" + "', '" + "NULL" + "', '" + "BETHEL" + "', '"+ "21400001@handong.edu" + "', '" + "Kimcheon" + "')");
+//
+//			result = stmt.executeUpdate("INSERT INTO StudentList(student_num, user_id, password, name, "
+//					+ "phone_num, gender, high_school, entrance_date, graduate_date, department, first_major, second_major, "
+//					+ "minor, rc, e_mail, address) "
+//					+ "VALUES (" + Integer.toString(21400145) + ", '" +  "jjung" + "', '" + "1125" + "', '"
+//					+ "Jusung Jung" + "', '" + "01015897321" + "', '" + "M" + "','" + "Jungang High School" + "', DATE '" 
+//					+ "2014-03-01" + "', DATE '" + "2020-02-28" + "', '" + "CPSW" + "', '" + "Counselling Psychology" + "', '"
+//					+ "NULL" + "', '" + "NULL" + "', '" + "BETHEL" + "', '"+ "21400145@handong.edu" + "', '" + "Busan" + "')");
 			
-			result = stmt.executeUpdate("INSERT INTO StudentList(student_num, user_id, password, name, "
-					+ "phone_num, gender, high_school, entrance_date, graduate_date, department, first_major, second_major, "
-					+ "minor, rc, e_mail, address) "
-					+ "VALUES (" + Integer.toString(21400001) + ", '" +  "mkim" + "', '" + "12345" + "', '"
-					+ "Moonsu Kim" + "', '" + "01015227321" + "', '" + "M" + "','" + "Daeyeon High School" + "', DATE '" 
-					+ "2014-03-01" + "', DATE '" + "2020-02-28" + "', '" + "ISLL" + "', '" + "International Studies" + "', '"
-					+ "NULL" + "', '" + "NULL" + "', '" + "BETHEL" + "', '"+ "21400001@handong.edu" + "', '" + "Kimcheon" + "')");
-
-			result = stmt.executeUpdate("INSERT INTO StudentList(student_num, user_id, password, name, "
-					+ "phone_num, gender, high_school, entrance_date, graduate_date, department, first_major, second_major, "
-					+ "minor, rc, e_mail, address) "
-					+ "VALUES (" + Integer.toString(21400145) + ", '" +  "jjung" + "', '" + "1125" + "', '"
-					+ "Jusung Jung" + "', '" + "01015897321" + "', '" + "M" + "','" + "Jungang High School" + "', DATE '" 
-					+ "2014-03-01" + "', DATE '" + "2020-02-28" + "', '" + "CPSW" + "', '" + "Counselling Psychology" + "', '"
-					+ "NULL" + "', '" + "NULL" + "', '" + "BETHEL" + "', '"+ "21400145@handong.edu" + "', '" + "Busan" + "')");
-			
-			// 프로페서 테이
+			// 프로페서 테이블 
 			result = stmt.executeUpdate("CREATE TABLE ProfessorList ("
 					+ "professor_num INT(8), "
 					+ "user_id char(20) NOT NULL, "
@@ -99,6 +99,7 @@ public class Initialize_Tables {
 					+ "rc char(20) CHECK (rc IN ('BETHEL', 'GRACE', 'KUYPER', 'ROTHEM', 'TORREY', 'CARMICHAEL')), "
 					+ "e_mail char(20), "
 					+ "address char(30), "
+					+ "department char(20), "
 					+ "employment_date DATE NOT NULL, "
 					+ "retirement_date DATE, "
 					+ "PRIMARY KEY (professor_num));");
@@ -109,13 +110,13 @@ public class Initialize_Tables {
 			System.out.println("[ Successfully initialized the tables ]");
 			System.out.println("\n***********************************************************\n");
 
-			Main.print_menu(conn, keyboard);
+			Main.print_menu(conn, keyboard, "root");
 		}
 		
 		System.out.println("\n***********************************************************\n");
 		System.out.println("[ Returning to the main menu ]");
 		System.out.println("\n***********************************************************\n");
 		
-		Main.print_menu(conn, keyboard);
+		Main.print_menu(conn, keyboard, "root");
 	}
 }

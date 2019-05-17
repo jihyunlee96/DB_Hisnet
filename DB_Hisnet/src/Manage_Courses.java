@@ -1,5 +1,6 @@
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
@@ -37,7 +38,7 @@ public class Manage_Courses {
 		}
 
 		else if (input == 3) {
-			delete_courses(conn, keyboard);
+			delete_course(conn, keyboard);
 		}		
 	}
 	
@@ -73,7 +74,7 @@ public class Manage_Courses {
 			stmt.executeQuery("START TRANSACTION;");
 			
 			int result = stmt.executeUpdate("CREATE TABLE CourseList ("
-					+ "course_id char(20), "
+					+ "course_id INT(20), "
 					+ "professor_num INT(20), "
 					+ "subject_code char(20) NOT NULL, "
 					// 전선 : MS, 전필 : ME, 교선 : LS, 교필 : LE
@@ -92,38 +93,14 @@ public class Manage_Courses {
 					+ "PRIMARY KEY (course_id, professor_num));");
 			
 			
-			// preset
-			result = stmt.executeUpdate("INSERT INTO CourseList(course_id, professor_num, subject_code, type, "
-					+ "section, title, credit, times, classroom, current_personnel, max_personnel, english_rate, "
-					+ "grade_type, yearAndSemester) "
-					+ "VALUES (" + course_id++ + ", '" + 0 + "', '" + "ITP20003" + "', '"
-					+ "MS" + "', '" + "01" + "', '" + "JAVA Programming" + "', '" + 3 + "', '" +  "Tue1,Tue2,Fri1,Fri2" + "', '"
-					+ "NTH 413" + "', '" + 0 + "', '" + 37 + "', '" + 100 + "', '"
-					+ "A+" + "', '" + "2019-01" + "')");
-
-//			result = stmt.executeUpdate("INSERT INTO StudentList(student_num, user_id, password, name, "
-//					+ "phone_num, gender, high_school, entrance_date, graduate_date, department, first_major, second_major, "
-//					+ "minor, rc, e_mail, address) "
-//					+ "VALUES (" + Integer.toString(21700001) + ", '" +  "yjung" + "', '" + "321" + "', '"
-//					+ "Yujin Jung" + "', '" + "01012347321" + "', '" + "F" + "','" + "Moonhyun High School" + "', DATE '" 
-//					+ "2017-03-01" + "', DATE '" + "2021-02-28" + "', '" + "SESE" + "', '" + "Architecture" + "', '"
-//					+ "NULL" + "', '" + "NULL" + "', '" + "KUYPER" + "', '"+ "21700001@handong.edu" + "', '" + "Suwon" + "')");
-//			
-//			result = stmt.executeUpdate("INSERT INTO StudentList(student_num, user_id, password, name, "
-//					+ "phone_num, gender, high_school, entrance_date, graduate_date, department, first_major, second_major, "
-//					+ "minor, rc, e_mail, address) "
-//					+ "VALUES (" + Integer.toString(21400001) + ", '" +  "mkim" + "', '" + "12345" + "', '"
-//					+ "Moonsu Kim" + "', '" + "01015227321" + "', '" + "M" + "','" + "Daeyeon High School" + "', DATE '" 
-//					+ "2014-03-01" + "', DATE '" + "2020-02-28" + "', '" + "ISLL" + "', '" + "International Studies" + "', '"
-//					+ "NULL" + "', '" + "NULL" + "', '" + "BETHEL" + "', '"+ "21400001@handong.edu" + "', '" + "Kimcheon" + "')");
-//
-//			result = stmt.executeUpdate("INSERT INTO StudentList(student_num, user_id, password, name, "
-//					+ "phone_num, gender, high_school, entrance_date, graduate_date, department, first_major, second_major, "
-//					+ "minor, rc, e_mail, address) "
-//					+ "VALUES (" + Integer.toString(21400145) + ", '" +  "jjung" + "', '" + "1125" + "', '"
-//					+ "Jusung Jung" + "', '" + "01015897321" + "', '" + "M" + "','" + "Jungang High School" + "', DATE '" 
-//					+ "2014-03-01" + "', DATE '" + "2020-02-28" + "', '" + "CPSW" + "', '" + "Counselling Psychology" + "', '"
-//					+ "NULL" + "', '" + "NULL" + "', '" + "BETHEL" + "', '"+ "21400145@handong.edu" + "', '" + "Busan" + "')");
+//			// preset
+//			result = stmt.executeUpdate("INSERT INTO CourseList(course_id, professor_num, subject_code, type, "
+//					+ "section, title, credit, times, classroom, current_personnel, max_personnel, english_rate, "
+//					+ "grade_type, yearAndSemester) "
+//					+ "VALUES (" + course_id++ + ", '" + 0 + "', '" + "ITP20003" + "', '"
+//					+ "MS" + "', '" + "01" + "', '" + "JAVA Programming" + "', '" + 3 + "', '" +  "Tue1,Tue2,Fri1,Fri2" + "', '"
+//					+ "NTH 413" + "', '" + 0 + "', '" + 37 + "', '" + 100 + "', '"
+//					+ "A+" + "', '" + "2019-01" + "')");
 
 			
 			stmt.executeQuery("COMMIT;");
@@ -152,7 +129,15 @@ public class Manage_Courses {
 		// add a course
 		System.out.println("[ Fill out the following sections ]");
 		
-		// course_id will be put automatically
+		// get the last course_id 
+		Statement stmt = (Statement) conn.createStatement();
+		ResultSet rs = stmt.executeQuery("select course_id from CourseList where course_id = (select max(course_id) from CourseList);");
+		
+		if(rs.next()) {
+			course_id = rs.getInt(1);
+			course_id++;
+		}
+		
 		
 		// receive a professor number
 		System.out.print("Professor Number: ");
@@ -227,25 +212,6 @@ public class Manage_Courses {
 		if (yearAndSemester.length() == 0)
 			yearAndSemester = keyboard.nextLine();	
 		
-		Statement stmt = (Statement) conn.createStatement();
-		
-//		+ "course_id char(20), "
-//		+ "professor_num INT(20), "
-//		+ "subject_code char(20) NOT NULL, "
-//		// 전선 : MS, 전필 : ME, 교선 : LS, 교필 : LE
-//		+ "type char(2) CHECK (type IN ('MS', 'ME', 'LS', 'LE'), "
-//		+ "section INT(2) NOT NULL, "
-//		+ "title char(30) NOT NULL, "
-//		+ "credit INT(1) NOT NULL, "
-//		+ "times char(30) NOT NULL, "
-//		+ "classroom char(10) NOT NULL, "
-//		+ "current_personnel INT(3), "
-//		+ "max_personnel INT(3) NOT NULL, "
-//		+ "english_rate INT(3) NOT NULL, "
-//		+ "grade_type char(3) NOT NULL, "
-//		+ "yearAndSemester char(10) NOT NULL, "
-//		+ "PRIMARY KEY (course_id, professor_num));");
-		
 		
 		int result = stmt.executeUpdate("INSERT INTO CourseList(course_id, professor_num, subject_code, type, "
 				+ "section, title, credit, times, classroom, current_personnel, max_personnel, english_rate, "
@@ -257,14 +223,19 @@ public class Manage_Courses {
 		
 		if (result == 1) {
 			System.out.println("\n***********************************************************\n");
-			System.out.println(title + " (" + section + ") is successfully added to CourseList");
+			System.out.println(title + "(" + section + ") is successfully added to CourseList");
 			System.out.println("\n***********************************************************\n");
 		}
+		
+		System.out.println("\n***********************************************************\n");
+		System.out.println("[ Returning to the back page ]");
+		System.out.println("\n***********************************************************\n");
+		Root_User_Job.print_root_job(conn, keyboard);
 	}
 	
 	
 	// 과목 삭제  
-	public static void delete_courses(Connection conn, Scanner keyboard) throws SQLException {
+	public static void delete_course(Connection conn, Scanner keyboard) throws SQLException {
 		
 		System.out.println("[ Manage Courses - Delete Course ]");			
 		System.out.println("\n***********************************************************\n");
@@ -276,34 +247,40 @@ public class Manage_Courses {
 		// 과목명 받기 
 		System.out.println("[ Input the course title to delete ]\n");
 		
-		System.out.print("Input: ");
+		System.out.print("Title: ");
 		String course_name = keyboard.nextLine();
+		
+		if (course_name.length() == 0)
+			course_name = keyboard.nextLine();
 		
 		System.out.println();
 		
 		// 분반 이름 받기 
 		System.out.println("[ Input the section number ]\n");
-				
-		System.out.print("Input: ");
+		
+		System.out.print("Section: ");
 		int section = keyboard.nextInt();
 				
 		System.out.println();
 		
 		// 지우기 
-		result = stmt.executeUpdate("DELETE FROM CourseList WHERE title = " + course_name + " AND section = " + Integer.toString(section) + ";");
+		result = stmt.executeUpdate("DELETE FROM CourseList WHERE title = '" + course_name + "' AND section = " + Integer.toString(section) + ";");
 
 		
 		if (result == 1) {
 			System.out.println("\n***********************************************************\n");
-			System.out.println("[ Successfully deleted course " + course_name + " " + section + "]");
+			System.out.println("[ Successfully deleted course " + course_name + "(" + section + ")]");
 			System.out.println("\n***********************************************************\n");
 		}
 		else {
 			System.out.println("\n***********************************************************\n");
-			System.out.println("[ FAILED - Cannot find course " + course_name + " " + section + "]");
+			System.out.println("[ FAILED - Cannot find course " + course_name + "(" + section + ")]");
 			System.out.println("\n***********************************************************\n");
 		}
 		
+		System.out.println("\n***********************************************************\n");
+		System.out.println("[ Returning to the back page ]");
+		System.out.println("\n***********************************************************\n");
 		Root_User_Job.print_root_job(conn, keyboard);
 	}
 }

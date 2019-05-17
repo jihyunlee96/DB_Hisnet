@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-import courses.*;
-
 public class Main {
 	
 	static String student_no;
@@ -91,12 +89,13 @@ public class Main {
 			System.out.println("\n***********************************************************");
 		}
 		
-		print_menu(conn, keyboard);			
+		print_menu(conn, keyboard, student_no);			
 
 	}
 	
-	public static void print_menu(Connection conn, Scanner keyboard) throws SQLException {
-		 
+	public static void print_menu(Connection conn, Scanner keyboard, String student_no) throws SQLException {
+		set_student_no(student_no); 
+		
 		// for root user
 		if (student_no.compareTo("root") == 0 ) {
 			System.out.println("* Current user: " + student_no + " *\n");
@@ -172,6 +171,16 @@ public class Main {
 				
 			}
 		}
+	}
+	
+	// setter of student_id
+		static public void set_student_no(String student_num) {
+			student_no = student_num;
+		}
+	
+	// getter of student_id
+	static public String get_student_no() {
+		return student_no;
 	}
 }
 
