@@ -365,7 +365,7 @@ public class Manage_Users {
 			if (input2.length() == 0)
 				input2 = keyboard.nextLine();
 			
-			result = stmt.executeUpdate("UPDATE StudentList set " + attribute + " = '" + input2 + "';");
+			result = stmt.executeUpdate("UPDATE StudentList set " + attribute + " = '" + input2 + "' where student_num ='" + st_num + "';");
 			
 			System.out.println();
 			
@@ -432,9 +432,9 @@ public class Manage_Users {
 				input2 = keyboard.nextLine();
 			
 			if (input != 3)
-				result = stmt.executeUpdate("UPDATE ProfessorList set " + attribute + " = '" + input2 + "';");
+				result = stmt.executeUpdate("UPDATE ProfessorList set " + attribute + " = '" + input2 + "' where professor_num ='" + pf_num + "';");
 			else
-				result = stmt.executeUpdate("UPDATE ProfessorList set " + attribute + " = " + input2 + ";");
+				result = stmt.executeUpdate("UPDATE ProfessorList set " + attribute + " = '" + input2 + "' where professor_num ='" + pf_num + "';");
 			
 			System.out.println();
 			

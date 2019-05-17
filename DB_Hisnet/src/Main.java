@@ -20,9 +20,14 @@ public class Main {
     			Class.forName("com.mysql.cj.jdbc.Driver");
     			
     			/* change the user name and password */
+// <<<<<<< heeseok
 //			Connection conn = DriverManager.getConnection("jdbc:mysql://172.17.217.136:3306/db?serverTimezone=UTC&&useSSL=false&&allowPublicKeyRetrieval=true", "4InQueue", "dbdb1234!");
     			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?serverTimezone=UTC&&useSSL=false&&allowPublicKeyRetrieval=true", "root", "cho7611278");
     			
+// =======
+// 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?serverTimezone=UTC&&useSSL=false&&allowPublicKeyRetrieval=true", "root", "1");
+
+// >>>>>>> master
 			log_in(conn, keyboard);			
 		} 
 		
