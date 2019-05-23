@@ -26,7 +26,7 @@ public class Manage_Facilities {
 		System.out.println("\n***********************************************************\n");
 		
 		if (input == 0) {
-			Root_User_Job.print_root_job(conn, keyboard);
+			Heeseok.start(conn, keyboard);
 		}
 		
 		else if (input == 1) {
@@ -95,14 +95,14 @@ public class Manage_Facilities {
 			System.out.println("[ Successfully initialized facility table ]");
 			System.out.println("\n***********************************************************\n");
 
-			Root_User_Job.print_root_job(conn, keyboard);
+			Heeseok.start(conn, keyboard);
 		}
 		
 		System.out.println("\n***********************************************************\n");
 		System.out.println("[ Returning to the back page ]");
 		System.out.println("\n***********************************************************\n");
 		
-		Root_User_Job.print_root_job(conn, keyboard);
+		Heeseok.start(conn, keyboard);
 	}
 	
 	
@@ -147,7 +147,7 @@ public class Manage_Facilities {
 		System.out.println("\n***********************************************************\n");
 		System.out.println("[ Returning to the back page ]");
 		System.out.println("\n***********************************************************\n");
-		Root_User_Job.print_root_job(conn, keyboard);
+		Heeseok.start(conn, keyboard);
 	}
 	
 	
@@ -190,6 +190,6 @@ public class Manage_Facilities {
 		System.out.println("\n***********************************************************\n");
 		System.out.println("[ Returning to the back page ]");
 		System.out.println("\n***********************************************************\n");
-		Root_User_Job.print_root_job(conn, keyboard);
+		Heeseok.start(conn, keyboard);
 	}
 }

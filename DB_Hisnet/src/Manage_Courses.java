@@ -26,7 +26,7 @@ public class Manage_Courses {
 		System.out.println("\n***********************************************************\n");
 		
 		if (input == 0) {
-			Root_User_Job.print_root_job(conn, keyboard);
+			Heeseok.start(conn, keyboard);
 		}
 		
 		else if (input == 1) {
@@ -90,6 +90,7 @@ public class Manage_Courses {
 					// PF or A+
 					+ "grade_type char(2) CHECK (grade_type IN ('PF', 'A+')), "
 					+ "yearAndSemester char(10) NOT NULL, "
+					+ "ta_student_num INT(8) NOT NULL, "
 					+ "PRIMARY KEY (course_id, professor_num));");
 			
 			
@@ -109,14 +110,14 @@ public class Manage_Courses {
 			System.out.println("[ Successfully initialized course table ]");
 			System.out.println("\n***********************************************************\n");
 
-			Root_User_Job.print_root_job(conn, keyboard);
+			Heeseok.start(conn, keyboard);
 		}
 		
 		System.out.println("\n***********************************************************\n");
 		System.out.println("[ Returning to the back page ]");
 		System.out.println("\n***********************************************************\n");
 		
-		Root_User_Job.print_root_job(conn, keyboard);
+		Heeseok.start(conn, keyboard);
 	}
 	
 	
@@ -212,14 +213,18 @@ public class Manage_Courses {
 		if (yearAndSemester.length() == 0)
 			yearAndSemester = keyboard.nextLine();	
 		
+		// receive a ta_student_num
+		System.out.print("TA Student Number: ");
+		int ta_student_num = keyboard.nextInt();
+		
 		
 		int result = stmt.executeUpdate("INSERT INTO CourseList(course_id, professor_num, subject_code, type, "
 				+ "section, title, credit, times, classroom, current_personnel, max_personnel, english_rate, "
-				+ "grade_type, yearAndSemester) "
+				+ "grade_type, yearAndSemester, ta_student_num) "
 				+ "VALUES (" + course_id++ + ", '" +  professor_num + "', '" + subject_code + "', '"
 				+ type + "', '" + section + "', '" + title + "', '" + credit + "', '" +  times + "', '"
 				+ classroom + "', '" + current_personnel + "', '" + max_personnel + "', '" + english_rate + "', '"
-				+ grade_type + "', '" + yearAndSemester + "')");
+				+ grade_type + "', '" + yearAndSemester + "', "+ ta_student_num + ")");
 		
 		if (result == 1) {
 			System.out.println("\n***********************************************************\n");
@@ -230,7 +235,7 @@ public class Manage_Courses {
 		System.out.println("\n***********************************************************\n");
 		System.out.println("[ Returning to the back page ]");
 		System.out.println("\n***********************************************************\n");
-		Root_User_Job.print_root_job(conn, keyboard);
+		Heeseok.start(conn, keyboard);
 	}
 	
 	
@@ -281,6 +286,6 @@ public class Manage_Courses {
 		System.out.println("\n***********************************************************\n");
 		System.out.println("[ Returning to the back page ]");
 		System.out.println("\n***********************************************************\n");
-		Root_User_Job.print_root_job(conn, keyboard);
+		Heeseok.start(conn, keyboard);
 	}
 }
